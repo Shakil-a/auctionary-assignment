@@ -211,184 +211,100 @@
     127) Should return 200, with 0 objects when searching all auctions with the string 'xxx'
 
 
-  1 passing (304ms)
+  1 passing (192ms)
   127 failing
 
   1) Test successful creation of users
        Should return 201, and JSON with user_id of new user: dkells0@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   2) Test successful creation of users
        Should return 201, and JSON with user_id of new user: jmorston1@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   3) Test successful creation of users
        Should return 201, and JSON with user_id of new user: rgiovanardi2@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   4) Test successful creation of users
        Should return 201, and JSON with user_id of new user: bissit3@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   5) Test successful creation of users
        Should return 201, and JSON with user_id of new user: eondricek4@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   6) Test successful creation of users
        Should return 201, and JSON with user_id of new user: ldowding5@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   7) Test successful creation of users
        Should return 201, and JSON with user_id of new user: llindfors6@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   8) Test successful creation of users
        Should return 201, and JSON with user_id of new user: rlavalde7@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   9) Test successful creation of users
        Should return 201, and JSON with user_id of new user: sstivani8@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   10) Test successful creation of users
        Should return 201, and JSON with user_id of new user: fdeehan9@gmail.com:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 201 but got 500
-      + expected - actual
-
-      -500
-      +201
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:35:41
+     AssertionError: expected { Object (message) } to have property 'user_id'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:37:46
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   11) Test malformed creation of users
        Should return a 400 status code: Test blank first_name:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   12) Test malformed creation of users
        Should return a 400 status code: Test blank last_name:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   13) Test malformed creation of users
        Should return a 400 status code: Test blank email:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   14) Test malformed creation of users
        Should return a 400 status code: Test blank password:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   15) Test malformed creation of users
        Should return a 400 status code: Test duplicate email:
 
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
+      AssertionError: expected Response{ _events: {}, …(35), …(2) } to have status code 400 but got 201
       + expected - actual
 
-      -500
+      -201
       +400
       
       at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
@@ -396,134 +312,68 @@
 
   16) Test malformed creation of users
        Should return a 400 status code: Test password too short:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   17) Test malformed creation of users
        Should return a 400 status code: Test password too long:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   18) Test malformed creation of users
        Should return a 400 status code: Test password without numbers:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   19) Test malformed creation of users
        Should return a 400 status code: Test password without special character:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   20) Test malformed creation of users
        Should return a 400 status code: Test password without upper case character:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   21) Test malformed creation of users
        Should return a 400 status code: Test password without lower case character:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:65:41
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:66:38
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   22) Test malformed creation of users
        Should return 400 status code: missing first name:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:84:37
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:85:34
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   23) Test malformed creation of users
        Should return 400 status code: missing last name:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:102:37
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:103:34
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   24) Test malformed creation of users
        Should return 400 status code: missing email:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:120:37
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:121:34
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   25) Test malformed creation of users
        Should return 400 status code: missing password:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:138:37
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:139:34
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   26) Test malformed creation of users
        Should return 400 status code: extra field:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
-      + expected - actual
-
-      -500
-      +400
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:158:37
+     AssertionError: expected 'text/html; charset=utf-8' to include 'application/json'
+      at /home/ahmed/projects/auctionary_starter/tests/test.a.user.creation.js:159:34
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   27) Test user login/logout

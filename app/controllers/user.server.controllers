@@ -1,8 +1,37 @@
+const Joi = require('joi');
+
 const create_account = (req, res) => {
-    return res.sendStatus(500);
+    const schema = Joi.object({
+    first_name: Joi.string().trim().min(1).required(),
+    last_name: Joi.string().trim().min(1).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string()
+        .min(8)
+        .max(32)
+        .regex(/[0-9]/, 'numbers')
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, 'special character')
+        .regex(/[A-Z]/, 'upper case')
+        .regex(/[a-z]/, 'lower case')
+        .required()
+    })
+    .options({ stripUnknown: false });   //FAIL on extra fields
+
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    return res.status(201).send({ message: "User validated (no DB yet)" });
 }
 
 const login = (req, res) => {
+    const schema = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+    })
+    .options({ stripUnknown: false });   //FAIL on extra fields
+
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
     return res.sendStatus(500);
 }
 
