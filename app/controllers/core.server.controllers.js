@@ -13,6 +13,9 @@ const create_item = (req, res) => {
     })
     .options({ stripUnknown: false });   //FAIL on extra fields
 
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send({'error_message' :error.details[0].message});
+
     return res.sendStatus(500);
 }
 
@@ -25,6 +28,10 @@ const bid_item = (req, res) => {
     amount: Joi.number().min(0).required()
     })
     .options({ stripUnknown: false });   //FAIL on extra fields
+
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send({'error_message' :error.details[0].message});
+    
     return res.sendStatus(500);
 }
 

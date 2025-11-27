@@ -9,6 +9,10 @@ const ask_question = (req, res) => {
     question_text: Joi.string().trim().min(1).required()
     })
     .options({ stripUnknown: false });   //FAIL on extra fields
+
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send({'error_message' :error.details[0].message});
+
     return res.sendStatus(500);
 }
 
@@ -17,6 +21,9 @@ const answer_question = (req, res) => {
     answer_text: Joi.string().trim().min(1).required()
     })
     .options({ stripUnknown: false });   //FAIL on extra fields
+    const { error } = schema.validate(req.body);
+    if(error) return res.status(400).send({'error_message' :error.details[0].message});
+    
     return res.sendStatus(500);
 }
 
