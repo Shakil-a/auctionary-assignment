@@ -1,4 +1,10 @@
 const Joi = require('joi');
+const crypto = require('crypto');
+const db = require('../../database');
+
+const getHash = function(password, salt){
+    return crypto.pbkdf2Sync(password, salt, 100000, 256, 'sha256', salt.toString('hex'))
+}
 
 const create_account = (req, res) => {
     const schema = Joi.object({
@@ -19,7 +25,19 @@ const create_account = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    return res.status(201).send({ message: "User validated (no DB yet)" });
+    const salt = crypto.randomBytes(64);
+    const hash = getHash(req.body.password, salt)
+
+    const sql = 'INSERT INTO users (first_name, last_name, email, password, salt) VALUES (?,?,?,?,?)';
+    let values = [req.body.first_name, req.body.last_name, req.body.email, hash, salt.toString('hex')];
+
+    db.run(sql, values, function(err){
+        if(err) return res.status(500);
+
+        return res.status(201).send({
+            user_id: this.user_id
+        })
+    })
 }
 
 const login = (req, res) => {
