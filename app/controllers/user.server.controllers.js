@@ -25,22 +25,40 @@ const create_account = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    const salt = crypto.randomBytes(64);
-    const hash = getHash(req.body.password, salt)
+    userModel.getUserByEmail(req.body.email, (err, user) => {
+        if (err) return res.status(500).json({ error_message: "Database error" });
+        if (user) return res.status(400).json({ error_message: "Email already exists" });
 
-     userModel.createUser(
-        req.body.first_name,
-        req.body.last_name,
-        req.body.email,
-        hash,
-        salt.toString('hex'),
-        (err, userId) => {
-            if (err) return res.status(500).send('Database error');
-            return res.status(201).json({ "user_id": userId });
-        }
-    );
+        const salt = crypto.randomBytes(64);
+        const hash = getHash(req.body.password, salt);
 
-}
+        userModel.createUser(
+            req.body.first_name,
+            req.body.last_name,
+            req.body.email,
+            hash,
+            salt.toString('hex'),
+            (err, userId) => {
+                if (err) return res.status(500).send('Database error');
+
+                const token = crypto.randomBytes(16).toString('hex');
+
+                userModel.setToken(userId, token, (err2) => {
+                    if (err2) return res.status(500).send('Database error');
+
+                    userModel.getUserByEmail(req.body.email, (err3, updatedUser) => {
+                        if (err3) return res.status(500).send('Database error');
+                        res.status(201).send({
+                            user_id: updatedUser.user_id,
+                            session_token: updatedUser.session_token
+                        });
+                    });
+                });
+            }
+        );
+    });
+
+};
 
 const login = (req, res) => {
     const schema = Joi.object({
