@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const userModel = require('../models/user.server.models');
 
 const getHash = function(password, salt){
-    return crypto.pbkdf2Sync(password, salt, 100000, 256, 'sha256', salt.toString('hex'))
+    return crypto.pbkdf2Sync(password, salt, 100000, 256, 'sha256').toString('hex');
 }
 
 const create_account = (req, res) => {
@@ -70,11 +70,36 @@ const login = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    return res.sendStatus(500);
+    userModel.getUserByEmail(req.body.email, (err, user) => {
+        if (err) {
+            return res.status(500).send('Database error. first one');
+        }
+
+        if (!user) return res.status(400).send('Invalid email or password');
+
+        const salt = Buffer.from(user.salt, 'hex');
+        const hash = getHash(req.body.password, salt);
+
+        if (hash !== user.password) return res.status(400).send({'error_message': 'password is wrong'});
+
+        if (user.session_token) return res.status(200).send({ message: 'Already logged in', user_id: user.user_id, session_token: user.session_token });
+
+        const token = crypto.randomBytes(16).toString('hex');
+        userModel.setToken(user.user_id, token, (err2) => {
+            console.log(err2);
+            if (err2) return res.status(500).send('Database error');
+            return res.status(200).send({ 'user_id': user.user_id, 'session_token': token });
+        });
+    });
 }
 
 const logout = (req, res) => {
-    return res.sendStatus(500);
+    const token = req.header('X-Authorization');
+
+    userModel.deleteToken(token, (err) => {
+        if (err) return res.status(500).send('Database error');
+        res.status(200).send({ message: 'Logged out' });
+    });
 }
 
 const get_profile_information = (req, res) => {

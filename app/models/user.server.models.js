@@ -17,6 +17,7 @@ const getUserByEmail = (email, callback) => {
         return callback(null, row);
     });
 };
+
 const setToken = (user_id, session_token, callback) => {
     const sql = 'UPDATE users SET session_token = ? WHERE user_id = ?';
     db.run(sql, [session_token, user_id], function (err) {
