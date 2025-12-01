@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const coreModel = require('../models/core.server.models');
 
 const search_item = (req, res) => {
     return res.sendStatus(500);
@@ -16,7 +17,16 @@ const create_item = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    return res.sendStatus(500);
+    coreModel.createItem(
+        req.body.name,
+        req.body.description,
+        req.body.starting_bid,
+        req.body.end_date,
+        (err, itemId) => {
+            if (err) return res.status(500).send('Database error');
+            res.status(201).send({'item_id': itemId})
+        }
+    )
 }
 
 const item_details = (req, res) => {
