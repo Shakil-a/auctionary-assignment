@@ -34,6 +34,9 @@ const item_details = (req, res) => {
 }
 
 const bid_item = (req, res) => {
+    const item_id = parseInt(req.params.item_id);
+    const user_id = req.user.user_id;
+
     const schema = Joi.object({
     amount: Joi.number().min(0).required()
     })
@@ -41,8 +44,21 @@ const bid_item = (req, res) => {
 
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
+
+    coreModel.getCurrentBidByItemId(item_id, (err, bid) => {
+        if (err) return res.status(500).send("Database error");
+
+        if (bid && req.body.amount <= bid.amount) {
+            return res.status(400).send("amount less or equal than current bid");
+        }
+
+        coreModel.createBid(item_id, user_id, req.body.amount, (err, bid_id) => {
+            if (err) return res.status(500).send('Database error');
+
+            res.status(201).send({ 'bid_id': bid_id });
+        });
+    });
     
-    return res.sendStatus(500);
 }
 
 const item_bid_history = (req, res) => {
