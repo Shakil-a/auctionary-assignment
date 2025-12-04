@@ -17,11 +17,13 @@ const create_item = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
+
     coreModel.createItem(
         req.body.name,
         req.body.description,
         req.body.starting_bid,
         req.body.end_date,
+        req.user.user_id,
         (err, itemId) => {
             if (err) return res.status(500).send('Database error');
             res.status(201).send({'item_id': itemId})
@@ -45,19 +47,16 @@ const bid_item = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    coreModel.getCurrentBidByItemId(item_id, (err, bid) => {
+    coreModel.getItemByItemId(item_id, (err, item) => {
         if (err) return res.status(500).send("Database error");
+        if(!item) return res.status(404).send("item does not exist");
 
-        if (bid && req.body.amount <= bid.amount) {
-            return res.status(400).send("amount less or equal than current bid");
-        }
-
-        coreModel.createBid(item_id, user_id, req.body.amount, (err, bid_id) => {
+        coreModel.createBid(item_id, user_id, req.body.amount, new Date(), (err, bid_id) => {
             if (err) return res.status(500).send('Database error');
 
             res.status(201).send({ 'bid_id': bid_id });
         });
-    });
+    })
     
 }
 
