@@ -51,10 +51,12 @@ const bid_item = (req, res) => {
         if (err) return res.status(500).send("Database error");
         if(!item) return res.status(404).send("item does not exist");
 
-        coreModel.createBid(item_id, user_id, req.body.amount, new Date(), (err, bid_id) => {
+        if(item.creator_id === user_id) return res.status(403).send('cannot bid on own item');
+
+        coreModel.createBid(item_id, user_id, req.body.amount, new Date(), (err, bid) => {
             if (err) return res.status(500).send('Database error');
 
-            res.status(201).send({ 'bid_id': bid_id });
+            res.status(201).send({ 'bid_id': bid });
         });
     })
     
