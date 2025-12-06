@@ -53,12 +53,21 @@ const bid_item = (req, res) => {
 
         if(item.creator_id === user_id) return res.status(403).send('cannot bid on own item');
 
-        coreModel.createBid(item_id, user_id, req.body.amount, new Date(), (err, bid) => {
+        coreModel.getCurrentBidByItemId(item_id, (err, currentBid) => {
             if (err) return res.status(500).send('Database error');
 
-            res.status(201).send({ 'bid_id': bid });
+            const bidAmount = Number(req.body.amount);
+            const currentAmount = currentBid ? Number(currentBid.amount) : 0;
+
+            if(bidAmount <= currentAmount) return res.status(400).send({ 'error_message': `Bid must be higher than current bid (${currentAmount})`});
+
+            coreModel.createBid(item_id, user_id, req.body.amount, new Date(), (err, bid) => {
+                if (err) return res.status(500).send('Database error');
+
+                res.status(201).send({ 'bid_id': bid });
+            });
         });
-    })
+    });
     
 }
 
