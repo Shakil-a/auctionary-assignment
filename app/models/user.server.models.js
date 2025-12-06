@@ -49,11 +49,68 @@ const getUserById = (id, callback) => {
         return callback(null, row);
     });
 };
+
+const getUserProfileById = (user_id, callback) => {
+    const now = Date.now();
+
+    db.get('SELECT user_id, first_name, last_name FROM users WHERE user_id = ?', [user_id], (err, user) => {
+        if (err) return callback(err);
+        if (!user) return callback(null, null);
+
+        const profile = {
+            user_id: user.user_id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            selling: [],
+            bidding_on: [],
+            auctions_ended: []
+        };
+
+        const sellingSql = `
+            SELECT i.*, u.first_name, u.last_name
+            FROM items i
+            JOIN users u ON i.creator_id = u.user_id
+            WHERE i.creator_id = ?
+        `;
+        db.all(sellingSql, [user_id], (err, selling) => {
+            if (err) return callback(err);
+            profile.selling = selling;
+
+            const biddingSql = `
+                SELECT DISTINCT i.*, u.first_name, u.last_name
+                FROM bids b
+                JOIN items i ON b.item_id = i.item_id
+                JOIN users u ON i.creator_id = u.user_id
+                WHERE b.user_id = ?
+            `;
+            db.all(biddingSql, [user_id], (err, bidding_on) => {
+                if (err) return callback(err);
+                profile.bidding_on = bidding_on;
+
+                const auctionsEndedSql = `
+                    SELECT DISTINCT i.*, u.first_name, u.last_name
+                    FROM items i
+                    JOIN users u ON i.creator_id = u.user_id
+                    WHERE i.end_date < ?
+                      AND (i.creator_id = ? OR i.item_id IN (SELECT item_id FROM bids WHERE user_id = ?))
+                `;
+                db.all(auctionsEndedSql, [now, user_id, user_id], (err, auctions_ended) => {
+                    if (err) return callback(err);
+                    profile.auctions_ended = auctions_ended;
+
+                    callback(null, profile);
+                });
+            });
+        });
+    });
+};
+
 module.exports = {
     createUser,
     getUserByEmail,
     setToken,
     getUserByToken,
     deleteToken,
-    getUserById
+    getUserById,
+    getUserProfileById
 };

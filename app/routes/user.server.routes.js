@@ -12,5 +12,5 @@ module.exports = function(app){
        .post(isAuthenticated, users.logout)
 
     app.route("/users/:user_id")
-       .post(isAuthenticated, users.get_profile_information)
+       .get(users.get_profile_information)
 }

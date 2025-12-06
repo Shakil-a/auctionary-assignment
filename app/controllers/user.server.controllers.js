@@ -103,7 +103,14 @@ const logout = (req, res) => {
 }
 
 const get_profile_information = (req, res) => {
-    return res.sendStatus(500);
+    const user_id = parseInt(req.params.user_id);
+
+    userModel.getUserProfileById(user_id, (err, profile) => {
+        if (err) return res.status(500).send('Database error' );
+        if (!profile) return res.status(404).send('User not found');
+
+        return res.status(200).json(profile);
+    });
 }
 
 module.exports = {
