@@ -1,19 +1,37 @@
 const Joi = require('joi');
+const coreModel = require('../models/core.server.models');
+const questionModel = require('../models/question.server.models');
 
 const get_questions = (req, res) => {
     return res.sendStatus(500);
 }
 
 const ask_question = (req, res) => {
-    const schema = Joi.object({
-    question_text: Joi.string().trim().min(1).required()
-    })
-    .options({ stripUnknown: false });   //FAIL on extra fields
+    const item_id = parseInt(req.params.item_id);
+    const user_id = req.user.user_id;    
+    const schema = Joi.object({question_text: Joi.string().trim().min(1).required()})
 
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    return res.sendStatus(500);
+    
+    coreModel.getItemByItemId(item_id, (err, item) => {
+            if (err) return res.status(500).send("Database error 1");
+            if(!item) return res.status(404).send("item does not exist");
+    
+            if(item.creator_id === user_id) return res.status(403).send('cannot ask on own item');
+
+            questionModel.askQuestion(
+                req.body.question_text,
+                user_id,
+                item.item_id,
+                (err, question_id) => {
+                    if (err) return res.status(500).send('Database error 2');
+                    res.status(200).send({ 'question_id': question_id });
+                }
+            )
+    
+        });
 }
 
 const answer_question = (req, res) => {
