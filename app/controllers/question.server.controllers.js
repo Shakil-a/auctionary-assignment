@@ -3,7 +3,23 @@ const coreModel = require('../models/core.server.models');
 const questionModel = require('../models/question.server.models');
 
 const get_questions = (req, res) => {
-    return res.sendStatus(500);
+    const item_id = parseInt(req.params.item_id);
+    coreModel.getItemByItemId(
+        item_id, (err, item) => {
+            if (err) return res.status(500).send("Database error");
+            if(!item) return res.status(404).send("item does not exist");
+
+            questionModel.getAllQuestionsByItemId(
+                item_id, (err2, questions) => {
+                    if (err2) return res.status(500).send("Database error");
+                    console.log(questions);
+                    return res.status(200).json(questions);
+                }
+            )
+
+        }
+    )
+
 }
 
 const ask_question = (req, res) => {

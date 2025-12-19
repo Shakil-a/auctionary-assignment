@@ -11,6 +11,14 @@ const askQuestion = (question_text, user_id, item_id, callback) => {
     });
 };
 
+const getAllQuestionsByItemId = (id, callback) => {
+    const sql = 'SELECT question_id, question AS question_text, answer AS answer_text FROM questions WHERE item_id = ? ORDER BY question_id DESC';
+    db.all(sql, [id], (err, rows) => {
+        if (err) return callback(err);
+        return callback(null, rows || all);
+    });
+}
+
 const getQuestionById = (id, callback) => {
     const sql = 'SELECT * FROM questions WHERE question_id = ?';
     db.get(sql, [id], (err, row) => {
@@ -31,5 +39,6 @@ const answerQuestionByQuestionId = (answer, id, callback) => {
 module.exports = {
     askQuestion,
     getQuestionById,
-    answerQuestionByQuestionId
+    answerQuestionByQuestionId,
+    getAllQuestionsByItemId
 };
