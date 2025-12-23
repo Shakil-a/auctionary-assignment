@@ -57,25 +57,28 @@ const answer_question = (req, res) => {
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
 
-    questionModel.getQuestionById(
-        question_id,
-        (err, question) => {
-            if (err) return res.status(500).send('Database error');
-            if(!question) return res.status(404).send('no question found');
+    questionModel.getQuestionById(question_id, (err, question) => {
+        if (err) return res.status(500).send('Database error');
+        if (!question) return res.status(404).send('no question found');
 
-            if(question.asked_by != user_id) return res.status(403).send('cannot answer a question you did not create');
+        coreModel.getItemByItemId(question.item_id, (err2, item) => {
+            if (err2) return res.status(500).send('Database error');
+            if (!item) return res.status(500).send('Item missing');
+
+            if (item.creator_id !== user_id) {
+                return res.status(403).send('cannot answer a question you did not create');
+            }
 
             questionModel.answerQuestionByQuestionId(
                 req.body.answer_text,
-                question.id,
-                (err2) => {
-                    if (err2) return res.status(500).send('Database error');
+                question_id,
+                (err3) => {
+                    if (err3) return res.status(500).send('Database error');
                     return res.status(200).send('answered question');
                 }
-            )
-
-        }
-    )
+            );
+        });
+    });
 }
 
 
