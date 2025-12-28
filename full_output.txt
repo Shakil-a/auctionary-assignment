@@ -6,16 +6,16 @@
 
   Test successful creation of users
 [Script: test.a.user.creation.js]
-    ✔ Should return 201, and JSON with user_id of new user: dkells0@gmail.com (380ms)
-    ✔ Should return 201, and JSON with user_id of new user: jmorston1@gmail.com (313ms)
-    ✔ Should return 201, and JSON with user_id of new user: rgiovanardi2@gmail.com (269ms)
-    ✔ Should return 201, and JSON with user_id of new user: bissit3@gmail.com (290ms)
-    ✔ Should return 201, and JSON with user_id of new user: eondricek4@gmail.com (257ms)
-    ✔ Should return 201, and JSON with user_id of new user: ldowding5@gmail.com (280ms)
-    ✔ Should return 201, and JSON with user_id of new user: llindfors6@gmail.com (267ms)
-    ✔ Should return 201, and JSON with user_id of new user: rlavalde7@gmail.com (330ms)
-    ✔ Should return 201, and JSON with user_id of new user: sstivani8@gmail.com (320ms)
-    ✔ Should return 201, and JSON with user_id of new user: fdeehan9@gmail.com (315ms)
+    ✔ Should return 201, and JSON with user_id of new user: dkells0@gmail.com (343ms)
+    ✔ Should return 201, and JSON with user_id of new user: jmorston1@gmail.com (244ms)
+    ✔ Should return 201, and JSON with user_id of new user: rgiovanardi2@gmail.com (220ms)
+    ✔ Should return 201, and JSON with user_id of new user: bissit3@gmail.com (234ms)
+    ✔ Should return 201, and JSON with user_id of new user: eondricek4@gmail.com (251ms)
+    ✔ Should return 201, and JSON with user_id of new user: ldowding5@gmail.com (291ms)
+    ✔ Should return 201, and JSON with user_id of new user: llindfors6@gmail.com (265ms)
+    ✔ Should return 201, and JSON with user_id of new user: rlavalde7@gmail.com (263ms)
+    ✔ Should return 201, and JSON with user_id of new user: sstivani8@gmail.com (271ms)
+    ✔ Should return 201, and JSON with user_id of new user: fdeehan9@gmail.com (269ms)
 
   Test malformed creation of users
 [Script: test.a.user.creation.js]
@@ -39,9 +39,9 @@
   Test user login/logout
 [Script: test.b.authentication.js]
     ✔ Should return 200 status code for successful login (240ms)
-    ✔ Should return the same token if a logged in user tried to login again (246ms)
+    ✔ Should return the same token if a logged in user tried to login again (253ms)
     ✔ Should return 400 status code for incorrect email
-    ✔ Should return 400 status code for incorrect password (262ms)
+    ✔ Should return 400 status code for incorrect password (258ms)
     ✔ Should return 400 status code for missing password
     ✔ Should return 400 status code for missing email
     ✔ Should return 400 status code for extra field
@@ -63,7 +63,7 @@
 
   Log into account.
 [Script: test.c.auction.creation.js]
-    ✔ Should return 200, and JSON with user_id and session_token (274ms)
+    ✔ Should return 200, and JSON with user_id and session_token (300ms)
 
   Test successful creation of items when logged in
 [Script: test.c.auction.creation.js]
@@ -99,8 +99,8 @@
 
   Log into user account
 [Script: test.d.bidding.js]
-    ✔ Should return 200, and JSON with user_id and session_token of the user (268ms)
-    ✔ Should return 200, and JSON with user_id and session_token of the user (237ms)
+    ✔ Should return 200, and JSON with user_id and session_token of the user (250ms)
+    ✔ Should return 200, and JSON with user_id and session_token of the user (258ms)
 
   Test bidding when logged in which should not pass validation checks
 [Script: test.d.bidding.js]
@@ -129,13 +129,13 @@
     4) Should return 200 with two bids
 
   Getting item details of an auction that does not exist
-    5) Should return 404
+    ✔ Should return 404
 
   Getting item details of an auction with no bids
-    6) Should return 200 but with an empty bid holder
+    5) Should return 200 but with an empty bid holder
 
   Getting item details of an auction with bids
-    7) Should return 200 but with a bid holder
+    6) Should return 200 but with a bid holder
 
   Getting user details of a user that does not exist
     ✔ Should return 404
@@ -155,8 +155,8 @@
 
   Log into account.
 [Script: test.h.auction.questions.js]
-    ✔ Should return 200, and JSON with user_id and session_token (242ms)
-    ✔ Should return 200, and JSON with user_id and session_token (232ms)
+    ✔ Should return 200, and JSON with user_id and session_token (267ms)
+    ✔ Should return 200, and JSON with user_id and session_token (273ms)
 
   Test asking questions if logged in
 [Script: test.h.auction.questions.js]
@@ -184,35 +184,35 @@
 
   Log into account.
 [Script: test.i.search.js]
-    ✔ Should return 200, and JSON with user_id and session_token (245ms)
-    ✔ Should return 200, and JSON with user_id and session_token (249ms)
+    ✔ Should return 200, and JSON with user_id and session_token (257ms)
+    ✔ Should return 200, and JSON with user_id and session_token (247ms)
 
   Searching with no criteria, and no authentication, to test pagination.
-    8) Should return 200, with an array of 10 objects
-    9) Should return 200, with an array of 9 objects when offsetting by 1
-    10) Should return 200, with an array of 8 objects when offsetting by 2
-    11) Should return 200, with an array of 5 objects when limiting to 5
-    12) Should return 200, with an array of 0 objects when limiting to 5 and offsetting by 10
+    7) Should return 200, with an array of 10 objects
+    8) Should return 200, with an array of 9 objects when offsetting by 1
+    9) Should return 200, with an array of 8 objects when offsetting by 2
+    10) Should return 200, with an array of 5 objects when limiting to 5
+    11) Should return 200, with an array of 0 objects when limiting to 5 and offsetting by 10
 
   Searching by status
-    13) Should return 400 if status is not recognised
-    14) Should return 400 if status is BID but not authenticated
-    15) Should return 400 if status is OPEN but not authenticated
-    16) Should return 200 with 10 objects if status is OPEN and logged in as user1
-    17) Should return 200 with 0 objects if status is OPEN and logged in as user2
-    18) Should return 200 with 0 objects if status is BID and logged in as user1
-    19) Should return 200 with 1 objects if status is BID and logged in as user2
-    20) Should return 200 with 0 objects if status is ARCHIVE, logged in as user2
+    12) Should return 400 if status is not recognised
+    13) Should return 400 if status is BID but not authenticated
+    14) Should return 400 if status is OPEN but not authenticated
+    15) Should return 200 with 10 objects if status is OPEN and logged in as user1
+    16) Should return 200 with 0 objects if status is OPEN and logged in as user2
+    17) Should return 200 with 0 objects if status is BID and logged in as user1
+    18) Should return 200 with 1 objects if status is BID and logged in as user2
+    19) Should return 200 with 0 objects if status is ARCHIVE, logged in as user2
 
   Searching by query string
-    21) Should return 200, with 6 objects when searching OPEN auctions with the string 'and' as user 1
-    22) Should return 200, with 0 objects when searching OPEN auctions with the string 'and' as user 2
-    23) Should return 200, with 1 objects when searching all items with the string 'uv'
-    24) Should return 200, with 0 objects when searching all auctions with the string 'xxx'
+    20) Should return 200, with 6 objects when searching OPEN auctions with the string 'and' as user 1
+    21) Should return 200, with 0 objects when searching OPEN auctions with the string 'and' as user 2
+    22) Should return 200, with 1 objects when searching all items with the string 'uv'
+    23) Should return 200, with 0 objects when searching all auctions with the string 'xxx'
 
 
-  104 passing (6s)
-  24 failing
+  105 passing (6s)
+  23 failing
 
   1) Test bidding when logged in which should not pass validation checks
        Should return 400 status code: amount less or equal than current bid (3595):
@@ -262,43 +262,19 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.e.bidhistory.js:45:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  5) Getting item details of an auction that does not exist
-       Should return 404:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 404 but got 401
-      + expected - actual
-
-      -401
-      +404
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:24:37
-      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-
-  6) Getting item details of an auction with no bids
+  5) Getting item details of an auction with no bids
        Should return 200 but with an empty bid holder:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 401
-      + expected - actual
-
-      -401
-      +200
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:34:37
+     AssertionError: expected { item_id: 2, …(8) } to have property 'current_bid'
+      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:49:42
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  7) Getting item details of an auction with bids
+  6) Getting item details of an auction with bids
        Should return 200 but with a bid holder:
-
-      AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 401
-      + expected - actual
-
-      -401
-      +200
-      
-      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:73:37
+     AssertionError: expected { item_id: 1, …(8) } to have property 'current_bid'
+      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:88:42
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  8) Searching with no criteria, and no authentication, to test pagination.
+  7) Searching with no criteria, and no authentication, to test pagination.
        Should return 200, with an array of 10 objects:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -310,7 +286,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:71:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  9) Searching with no criteria, and no authentication, to test pagination.
+  8) Searching with no criteria, and no authentication, to test pagination.
        Should return 200, with an array of 9 objects when offsetting by 1:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -322,7 +298,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:91:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  10) Searching with no criteria, and no authentication, to test pagination.
+  9) Searching with no criteria, and no authentication, to test pagination.
        Should return 200, with an array of 8 objects when offsetting by 2:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -334,7 +310,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:103:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  11) Searching with no criteria, and no authentication, to test pagination.
+  10) Searching with no criteria, and no authentication, to test pagination.
        Should return 200, with an array of 5 objects when limiting to 5:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -346,7 +322,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:115:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  12) Searching with no criteria, and no authentication, to test pagination.
+  11) Searching with no criteria, and no authentication, to test pagination.
        Should return 200, with an array of 0 objects when limiting to 5 and offsetting by 10:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -358,7 +334,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:127:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  13) Searching by status
+  12) Searching by status
        Should return 400 if status is not recognised:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
@@ -370,7 +346,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:142:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  14) Searching by status
+  13) Searching by status
        Should return 400 if status is BID but not authenticated:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
@@ -382,7 +358,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:153:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  15) Searching by status
+  14) Searching by status
        Should return 400 if status is OPEN but not authenticated:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 400 but got 500
@@ -394,7 +370,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:164:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  16) Searching by status
+  15) Searching by status
        Should return 200 with 10 objects if status is OPEN and logged in as user1:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -406,7 +382,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:176:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  17) Searching by status
+  16) Searching by status
        Should return 200 with 0 objects if status is OPEN and logged in as user2:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -418,7 +394,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:189:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  18) Searching by status
+  17) Searching by status
        Should return 200 with 0 objects if status is BID and logged in as user1:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -430,7 +406,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:202:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  19) Searching by status
+  18) Searching by status
        Should return 200 with 1 objects if status is BID and logged in as user2:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -442,7 +418,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:215:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  20) Searching by status
+  19) Searching by status
        Should return 200 with 0 objects if status is ARCHIVE, logged in as user2:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -454,7 +430,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:228:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  21) Searching by query string
+  20) Searching by query string
        Should return 200, with 6 objects when searching OPEN auctions with the string 'and' as user 1:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -466,7 +442,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:245:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  22) Searching by query string
+  21) Searching by query string
        Should return 200, with 0 objects when searching OPEN auctions with the string 'and' as user 2:
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -478,7 +454,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:258:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  23) Searching by query string
+  22) Searching by query string
        Should return 200, with 1 objects when searching all items with the string 'uv':
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500
@@ -490,7 +466,7 @@
       at /home/ahmed/projects/auctionary_starter/tests/test.i.search.js:270:37
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
-  24) Searching by query string
+  23) Searching by query string
        Should return 200, with 0 objects when searching all auctions with the string 'xxx':
 
       AssertionError: expected Response{ _events: {}, …(34), …(2) } to have status code 200 but got 500

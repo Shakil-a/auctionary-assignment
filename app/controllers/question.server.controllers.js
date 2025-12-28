@@ -12,7 +12,6 @@ const get_questions = (req, res) => {
             questionModel.getAllQuestionsByItemId(
                 item_id, (err2, questions) => {
                     if (err2) return res.status(500).send("Database error");
-                    console.log(questions);
                     return res.status(200).json(questions);
                 }
             )

@@ -9,7 +9,7 @@ module.exports = function(app){
        .post(isAuthenticated, core.create_item)
 
     app.route("/item/:item_id")
-       .get(isAuthenticated, core.item_details)
+       .get(core.item_details)
 
     app.route("/item/:item_id/bid")
        .post(isAuthenticated, core.bid_item)

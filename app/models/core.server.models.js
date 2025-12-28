@@ -36,11 +36,20 @@ const getItemByItemId = (item_id, callback) => {
     });
 }
 
+const getItemDetailsByItemId = (item_id, callback) => {
+    const sql = 'SELECT items.*, users.first_name, users.last_name FROM items JOIN users ON items.creator_id = users.user_id WHERE items.item_id = ?';
+    db.get(sql, [item_id], (err, itemDetails) => {
+        if (err) return callback(err);
+        return callback(null, itemDetails);
+    });
+}
+
 
 
 module.exports = {
     createItem,
     getCurrentBidByItemId,
     createBid,
-    getItemByItemId
+    getItemByItemId,
+    getItemDetailsByItemId
 };

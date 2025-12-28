@@ -32,7 +32,21 @@ const create_item = (req, res) => {
 }
 
 const item_details = (req, res) => {
-    return res.sendStatus(500);
+    const item_id = parseInt(req.params.item_id);
+
+    coreModel.getItemByItemId(item_id, (err, item) => {
+        if (err) return res.status(500).send("Database error");
+        if(!item) return res.status(404).send("item does not exist");
+
+        coreModel.getItemDetailsByItemId(item_id, (err, itemDetails) => {
+            if (err) return res.status(500).send("Database error");
+            console.log(itemDetails);
+            return res.status(200).json(itemDetails);
+        })
+        
+
+    })
+
 }
 
 const bid_item = (req, res) => {
