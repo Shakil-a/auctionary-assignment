@@ -6,16 +6,16 @@
 
   Test successful creation of users
 [Script: test.a.user.creation.js]
-    ✔ Should return 201, and JSON with user_id of new user: dkells0@gmail.com (343ms)
-    ✔ Should return 201, and JSON with user_id of new user: jmorston1@gmail.com (244ms)
-    ✔ Should return 201, and JSON with user_id of new user: rgiovanardi2@gmail.com (220ms)
-    ✔ Should return 201, and JSON with user_id of new user: bissit3@gmail.com (234ms)
-    ✔ Should return 201, and JSON with user_id of new user: eondricek4@gmail.com (251ms)
-    ✔ Should return 201, and JSON with user_id of new user: ldowding5@gmail.com (291ms)
-    ✔ Should return 201, and JSON with user_id of new user: llindfors6@gmail.com (265ms)
-    ✔ Should return 201, and JSON with user_id of new user: rlavalde7@gmail.com (263ms)
-    ✔ Should return 201, and JSON with user_id of new user: sstivani8@gmail.com (271ms)
-    ✔ Should return 201, and JSON with user_id of new user: fdeehan9@gmail.com (269ms)
+    ✔ Should return 201, and JSON with user_id of new user: dkells0@gmail.com (277ms)
+    ✔ Should return 201, and JSON with user_id of new user: jmorston1@gmail.com (216ms)
+    ✔ Should return 201, and JSON with user_id of new user: rgiovanardi2@gmail.com (282ms)
+    ✔ Should return 201, and JSON with user_id of new user: bissit3@gmail.com (256ms)
+    ✔ Should return 201, and JSON with user_id of new user: eondricek4@gmail.com (218ms)
+    ✔ Should return 201, and JSON with user_id of new user: ldowding5@gmail.com (238ms)
+    ✔ Should return 201, and JSON with user_id of new user: llindfors6@gmail.com (203ms)
+    ✔ Should return 201, and JSON with user_id of new user: rlavalde7@gmail.com (208ms)
+    ✔ Should return 201, and JSON with user_id of new user: sstivani8@gmail.com (212ms)
+    ✔ Should return 201, and JSON with user_id of new user: fdeehan9@gmail.com (258ms)
 
   Test malformed creation of users
 [Script: test.a.user.creation.js]
@@ -38,10 +38,10 @@
 
   Test user login/logout
 [Script: test.b.authentication.js]
-    ✔ Should return 200 status code for successful login (240ms)
-    ✔ Should return the same token if a logged in user tried to login again (253ms)
+    ✔ Should return 200 status code for successful login (199ms)
+    ✔ Should return the same token if a logged in user tried to login again (226ms)
     ✔ Should return 400 status code for incorrect email
-    ✔ Should return 400 status code for incorrect password (258ms)
+    ✔ Should return 400 status code for incorrect password (200ms)
     ✔ Should return 400 status code for missing password
     ✔ Should return 400 status code for missing email
     ✔ Should return 400 status code for extra field
@@ -63,7 +63,7 @@
 
   Log into account.
 [Script: test.c.auction.creation.js]
-    ✔ Should return 200, and JSON with user_id and session_token (300ms)
+    ✔ Should return 200, and JSON with user_id and session_token (248ms)
 
   Test successful creation of items when logged in
 [Script: test.c.auction.creation.js]
@@ -99,8 +99,8 @@
 
   Log into user account
 [Script: test.d.bidding.js]
-    ✔ Should return 200, and JSON with user_id and session_token of the user (250ms)
-    ✔ Should return 200, and JSON with user_id and session_token of the user (258ms)
+    ✔ Should return 200, and JSON with user_id and session_token of the user (205ms)
+    ✔ Should return 200, and JSON with user_id and session_token of the user (185ms)
 
   Test bidding when logged in which should not pass validation checks
 [Script: test.d.bidding.js]
@@ -155,8 +155,8 @@
 
   Log into account.
 [Script: test.h.auction.questions.js]
-    ✔ Should return 200, and JSON with user_id and session_token (267ms)
-    ✔ Should return 200, and JSON with user_id and session_token (273ms)
+    ✔ Should return 200, and JSON with user_id and session_token (188ms)
+    ✔ Should return 200, and JSON with user_id and session_token (219ms)
 
   Test asking questions if logged in
 [Script: test.h.auction.questions.js]
@@ -184,8 +184,8 @@
 
   Log into account.
 [Script: test.i.search.js]
-    ✔ Should return 200, and JSON with user_id and session_token (257ms)
-    ✔ Should return 200, and JSON with user_id and session_token (247ms)
+    ✔ Should return 200, and JSON with user_id and session_token (193ms)
+    ✔ Should return 200, and JSON with user_id and session_token (187ms)
 
   Searching with no criteria, and no authentication, to test pagination.
     7) Should return 200, with an array of 10 objects
@@ -211,7 +211,7 @@
     23) Should return 200, with 0 objects when searching all auctions with the string 'xxx'
 
 
-  105 passing (6s)
+  105 passing (5s)
   23 failing
 
   1) Test bidding when logged in which should not pass validation checks
@@ -264,14 +264,14 @@
 
   5) Getting item details of an auction with no bids
        Should return 200 but with an empty bid holder:
-     AssertionError: expected { item_id: 2, …(8) } to have property 'current_bid'
-      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:49:42
+     AssertionError: expected { item_id: 2, …(12) } to have property 'first_name'
+      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:47:42
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   6) Getting item details of an auction with bids
        Should return 200 but with a bid holder:
-     AssertionError: expected { item_id: 1, …(8) } to have property 'current_bid'
-      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:88:42
+     AssertionError: expected { item_id: 1, …(12) } to have property 'first_name'
+      at /home/ahmed/projects/auctionary_starter/tests/test.f.view.auction.js:86:42
       at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
   7) Searching with no criteria, and no authentication, to test pagination.
