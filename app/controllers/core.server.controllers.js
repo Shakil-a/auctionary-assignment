@@ -40,8 +40,26 @@ const item_details = (req, res) => {
 
         coreModel.getItemDetailsByItemId(item_id, (err, itemDetails) => {
             if (err) return res.status(500).send("Database error");
-            console.log(itemDetails);
-            return res.status(200).json(itemDetails);
+            const formattedItemDetails = {
+                "item_id": itemDetails.item_id,
+                "name": itemDetails.name,
+                "description": itemDetails.description,
+                "starting_bid": itemDetails.starting_bid,
+                "start_date": itemDetails.start_date,
+                "end_date": itemDetails.end_date,
+                "creator_id": itemDetails.creator_id,
+                "first_name": itemDetails.creator_first_name,
+                "last_name": itemDetails.creator_last_name,
+                "current_bid": itemDetails.current_bid ? itemDetails.current_bid : itemDetails.starting_bid,
+                "current_bid_holder": itemDetails.current_bid_user_id ? {
+                    "user_id": itemDetails.current_bid_user_id,
+                    "first_name": itemDetails.current_bid_first_name,
+                    "last_name": itemDetails.current_bid_last_name,
+
+                } : null,
+                
+            }
+            return res.status(200).send(formattedItemDetails);
         })
         
 
