@@ -40,6 +40,7 @@ const item_details = (req, res) => {
 
         coreModel.getItemDetailsByItemId(item_id, (err, itemDetails) => {
             if (err) return res.status(500).send("Database error");
+
             const formattedItemDetails = {
                 "item_id": itemDetails.item_id,
                 "name": itemDetails.name,
@@ -56,9 +57,9 @@ const item_details = (req, res) => {
                     "first_name": itemDetails.current_bid_first_name,
                     "last_name": itemDetails.current_bid_last_name,
 
-                } : null,
-                
+                } : null,  
             }
+
             return res.status(200).send(formattedItemDetails);
         })
         
@@ -89,7 +90,7 @@ const bid_item = (req, res) => {
             if (err) return res.status(500).send('Database error');
 
             const bidAmount = Number(req.body.amount);
-            const currentAmount = currentBid ? Number(currentBid.amount) : 0;
+            const currentAmount = currentBid ? Number(currentBid.amount) : Number(item.starting_bid);
 
             if(bidAmount <= currentAmount) return res.status(400).send({ 'error_message': `Bid must be higher than current bid (${currentAmount})`});
 
@@ -104,7 +105,20 @@ const bid_item = (req, res) => {
 }
 
 const item_bid_history = (req, res) => {
-    return res.sendStatus(500);
+    const item_id = parseInt(req.params.item_id);
+
+    coreModel.getItemByItemId(item_id, (err, item) => {
+        if (err) return res.status(500).send("Database error");
+        if(!item) return res.status(404).send("item does not exist");
+
+        coreModel.getAllBidsByItemId(item_id, (err, bids) => {
+            if (err) return res.status(500).send('Database error');
+            console.log(bids);
+            return res.status(200).json(bids);
+        })
+        
+
+    })
 }
 
 module.exports = {

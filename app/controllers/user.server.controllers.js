@@ -86,7 +86,6 @@ const login = (req, res) => {
 
         const token = crypto.randomBytes(16).toString('hex');
         userModel.setToken(user.user_id, token, (err2) => {
-            console.log(err2);
             if (err2) return res.status(500).send('Database error');
             return res.status(200).send({ 'user_id': user.user_id, 'session_token': token });
         });

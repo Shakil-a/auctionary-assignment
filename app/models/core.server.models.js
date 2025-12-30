@@ -65,6 +65,14 @@ const getItemDetailsByItemId = (item_id, callback) => {
     });
 }
 
+const getAllBidsByItemId = (item_id, callback) => {
+    const sql = 'SELECT bids.item_id, bids.amount, bids.timestamp, bids.user_id, bidder.first_name, bidder.last_name FROM bids JOIN users as bidder ON bids.user_id = bidder.user_id WHERE bids.item_id = ? ORDER BY bids.timestamp DESC';
+    db.all(sql, [item_id], (err, bids) => {
+        if (err) return callback(err);
+        return callback(null, bids);
+    });
+}
+
 
 
 module.exports = {
@@ -72,5 +80,6 @@ module.exports = {
     getCurrentBidByItemId,
     createBid,
     getItemByItemId,
-    getItemDetailsByItemId
+    getItemDetailsByItemId,
+    getAllBidsByItemId
 };
