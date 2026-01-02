@@ -1,9 +1,57 @@
 const Joi = require('joi');
 const coreModel = require('../models/core.server.models');
+const userModel = require('../models/user.server.models');
 
 const search_item = (req, res) => {
-    return res.sendStatus(500);
-}
+    const token = req.header('X-Authorization');
+
+    const q = req.query.q || '';
+    const status = req.query.status;
+
+    let limit = parseInt(req.query.limit) || 20;
+    let offset = parseInt(req.query.offset) || 0;
+
+    if (limit < 1) limit = 1;
+    if (limit > 100) limit = 100;
+    if (offset < 0) offset = 0;
+
+    const validStatuses = ['BID', 'OPEN', 'ARCHIVE'];
+    if (status && !validStatuses.includes(status)) {
+        return res.status(400).send('Bad Request');
+    }
+
+    if (!status) {
+        return coreModel.searchItems(
+            q, null, null, limit, offset,
+            (err, items) => {
+                if (err) return res.status(500).send('Database error');
+                return res.status(200).json(items);
+            }
+        );
+    }
+
+    if (!token) {
+        return res.status(400).send('Bad Request');
+    }
+
+    userModel.getUserByToken(token, (err, user) => {
+        if (err) return res.status(500).send('Database error');
+        if (!user) return res.status(400).send('Bad Request');
+
+        coreModel.searchItems(
+            q,
+            status,
+            user.user_id,
+            limit,
+            offset,
+            (err, items) => {
+                if (err) return res.status(500).send('Database error');
+                return res.status(200).json(items);
+            }
+        );
+    });
+};
+
 
 const create_item = (req, res) => {
     const schema = Joi.object({
@@ -75,7 +123,7 @@ const bid_item = (req, res) => {
     const schema = Joi.object({
     amount: Joi.number().min(0).required()
     })
-    .options({ stripUnknown: false });   //FAIL on extra fields
+    .options({ stripUnknown: false });
 
     const { error } = schema.validate(req.body);
     if(error) return res.status(400).send({'error_message' :error.details[0].message});
@@ -113,7 +161,6 @@ const item_bid_history = (req, res) => {
 
         coreModel.getAllBidsByItemId(item_id, (err, bids) => {
             if (err) return res.status(500).send('Database error');
-            console.log(bids);
             return res.status(200).json(bids);
         })
         

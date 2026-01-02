@@ -73,7 +73,57 @@ const getAllBidsByItemId = (item_id, callback) => {
     });
 }
 
+const searchItems = (q, status, userId, limit, offset, callback) => {
+    let sql = `
+        SELECT DISTINCT
+            items.item_id,
+            items.name,
+            items.description,
+            items.end_date,
+            items.creator_id,
+            u.first_name,
+            u.last_name
+        FROM items
+        JOIN users u ON items.creator_id = u.user_id
+    `;
 
+    const where = [];
+    const values = [];
+
+    if (q) {
+        where.push(`items.name LIKE ?`);
+        values.push(`%${q}%`);
+    }
+
+    if (status === 'OPEN') {
+        where.push(`items.creator_id = ?`);
+        where.push(`items.end_date > strftime('%s','now')`);
+        values.push(userId);
+    }
+
+    if (status === 'ARCHIVE') {
+        where.push(`items.creator_id = ?`);
+        where.push(`items.end_date > strftime('%s','now')`);
+        values.push(userId);
+    }
+
+    if (status === 'BID') {
+        sql += ` JOIN bids ON bids.item_id = items.item_id `;
+        where.push(`bids.user_id = ?`);
+        values.push(userId);
+    }
+
+    if (where.length > 0) {
+        sql += ` WHERE ` + where.join(' AND ');
+    }
+
+    sql += ` LIMIT ${limit} OFFSET ${offset}`;
+
+    db.all(sql, values, (err, rows) => {
+        if (err) return callback(err);
+        callback(null, rows);
+    });
+};
 
 module.exports = {
     createItem,
@@ -81,5 +131,6 @@ module.exports = {
     createBid,
     getItemByItemId,
     getItemDetailsByItemId,
-    getAllBidsByItemId
+    getAllBidsByItemId,
+    searchItems
 };
