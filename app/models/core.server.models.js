@@ -103,7 +103,7 @@ const searchItems = (q, status, userId, limit, offset, callback) => {
 
     if (status === 'ARCHIVE') {
         where.push(`items.creator_id = ?`);
-        where.push(`items.end_date > strftime('%s','now')`);
+        where.push(`items.end_date < strftime('%s','now')`);
         values.push(userId);
     }
 
